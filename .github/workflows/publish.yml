@@ -64,8 +64,9 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}--build-cache-npm-packages-${{ hashFiles('**/package-lock.json') }}
-
-           deploy:
+          
+ # Deploy job (https://github.com/actions/deploy-pages)
+  deploy:
     # Add a dependency to the build job
     needs: build
     # Only deploy on development branch
@@ -86,4 +87,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
-
